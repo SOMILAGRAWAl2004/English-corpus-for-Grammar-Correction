@@ -1,0 +1,152 @@
+{
+  "version": "1.0",
+  "description": "Error taxonomy for English Grammar Correction Corpus",
+  "categories": {
+    "SPELLING": {
+      "code": "SPE",
+      "description": "Misspelled words",
+      "examples": [
+        {"incorrect": "recieve", "correct": "receive"},
+        {"incorrect": "definately", "correct": "definitely"},
+        {"incorrect": "occured", "correct": "occurred"}
+      ],
+      "common_patterns": ["ie/ei confusion", "double letters", "silent letters"]
+    },
+    "SUBJECT_VERB_AGREEMENT": {
+      "code": "SVA",
+      "description": "Subject and verb do not agree in number",
+      "examples": [
+        {"incorrect": "She go to school", "correct": "She goes to school"},
+        {"incorrect": "They was happy", "correct": "They were happy"},
+        {"incorrect": "He don't like it", "correct": "He doesn't like it"}
+      ],
+      "common_patterns": ["third person singular", "collective nouns", "indefinite pronouns"]
+    },
+    "ARTICLE": {
+      "code": "ART",
+      "description": "Wrong, missing, or unnecessary article (a, an, the)",
+      "examples": [
+        {"incorrect": "I saw elephant", "correct": "I saw an elephant"},
+        {"incorrect": "She is a honest person", "correct": "She is an honest person"},
+        {"incorrect": "I go to the school", "correct": "I go to school"}
+      ],
+      "common_patterns": ["missing articles", "wrong article choice", "unnecessary articles"]
+    },
+    "VERB_TENSE": {
+      "code": "TENSE",
+      "description": "Incorrect verb tense usage",
+      "examples": [
+        {"incorrect": "I see him yesterday", "correct": "I saw him yesterday"},
+        {"incorrect": "She has went there", "correct": "She has gone there"},
+        {"incorrect": "I am knowing the answer", "correct": "I know the answer"}
+      ],
+      "common_patterns": ["past tense irregular verbs", "present perfect", "stative verbs"]
+    },
+    "VERB_FORM": {
+      "code": "VFORM",
+      "description": "Wrong verb form (infinitive, gerund, participle)",
+      "examples": [
+        {"incorrect": "I enjoy to swim", "correct": "I enjoy swimming"},
+        {"incorrect": "He suggested to go", "correct": "He suggested going"},
+        {"incorrect": "I look forward to see you", "correct": "I look forward to seeing you"}
+      ],
+      "common_patterns": ["gerund vs infinitive", "participle forms", "modal verbs"]
+    },
+    "PREPOSITION": {
+      "code": "PREP",
+      "description": "Wrong, missing, or unnecessary preposition",
+      "examples": [
+        {"incorrect": "I am interested for music", "correct": "I am interested in music"},
+        {"incorrect": "She arrived to the station", "correct": "She arrived at the station"},
+        {"incorrect": "I discussed about the problem", "correct": "I discussed the problem"}
+      ],
+      "common_patterns": ["preposition choice", "missing prepositions", "redundant prepositions"]
+    },
+    "PRONOUN": {
+      "code": "PRON",
+      "description": "Wrong pronoun or pronoun-antecedent agreement",
+      "examples": [
+        {"incorrect": "Everyone should bring their book", "correct": "Everyone should bring his or her book"},
+        {"incorrect": "Me and him went there", "correct": "He and I went there"},
+        {"incorrect": "The team lost their game", "correct": "The team lost its game"}
+      ],
+      "common_patterns": ["subject vs object pronouns", "pronoun agreement", "reflexive pronouns"]
+    },
+    "WORD_ORDER": {
+      "code": "WO",
+      "description": "Incorrect word order in sentence",
+      "examples": [
+        {"incorrect": "I always am late", "correct": "I am always late"},
+        {"incorrect": "She plays well tennis", "correct": "She plays tennis well"},
+        {"incorrect": "I don't know what is it", "correct": "I don't know what it is"}
+      ],
+      "common_patterns": ["adverb placement", "adjective order", "question word order"]
+    },
+    "PUNCTUATION": {
+      "code": "PUNCT",
+      "description": "Missing, wrong, or unnecessary punctuation",
+      "examples": [
+        {"incorrect": "Lets go", "correct": "Let's go"},
+        {"incorrect": "I bought apples oranges and bananas", "correct": "I bought apples, oranges, and bananas"},
+        {"incorrect": "The boy's went home", "correct": "The boys went home"}
+      ],
+      "common_patterns": ["apostrophes", "commas", "quotation marks"]
+    },
+    "NOUN_NUMBER": {
+      "code": "NOUN",
+      "description": "Wrong singular/plural noun form",
+      "examples": [
+        {"incorrect": "I have many informations", "correct": "I have a lot of information"},
+        {"incorrect": "She gave me some advices", "correct": "She gave me some advice"},
+        {"incorrect": "There are many peoples", "correct": "There are many people"}
+      ],
+      "common_patterns": ["uncountable nouns", "irregular plurals", "collective nouns"]
+    },
+    "WORD_CHOICE": {
+      "code": "WC",
+      "description": "Wrong word used in context",
+      "examples": [
+        {"incorrect": "I made my homework", "correct": "I did my homework"},
+        {"incorrect": "He said me to go", "correct": "He told me to go"},
+        {"incorrect": "I am agree with you", "correct": "I agree with you"}
+      ],
+      "common_patterns": ["confusable words", "collocations", "word meaning"]
+    },
+    "MISSING_WORD": {
+      "code": "MW",
+      "description": "A necessary word is missing",
+      "examples": [
+        {"incorrect": "I am student", "correct": "I am a student"},
+        {"incorrect": "She went store", "correct": "She went to the store"},
+        {"incorrect": "I looking for help", "correct": "I am looking for help"}
+      ],
+      "common_patterns": ["missing articles", "missing prepositions", "missing auxiliary verbs"]
+    },
+    "UNNECESSARY_WORD": {
+      "code": "UW",
+      "description": "An unnecessary word is present",
+      "examples": [
+        {"incorrect": "I returned back home", "correct": "I returned home"},
+        {"incorrect": "She repeated again", "correct": "She repeated"},
+        {"incorrect": "The reason is because", "correct": "The reason is that"}
+      ],
+      "common_patterns": ["redundancy", "double negatives", "pleonasms"]
+    },
+    "CAPITALIZATION": {
+      "code": "CAP",
+      "description": "Wrong capitalization",
+      "examples": [
+        {"incorrect": "i went to london", "correct": "I went to London"},
+        {"incorrect": "She speaks french", "correct": "She speaks French"},
+        {"incorrect": "I met doctor Smith", "correct": "I met Doctor Smith"}
+      ],
+      "common_patterns": ["sentence start", "proper nouns", "titles"]
+    },
+    "OTHER": {
+      "code": "OTHER",
+      "description": "Other grammatical errors not covered above",
+      "examples": [],
+      "common_patterns": []
+    }
+  }
+}

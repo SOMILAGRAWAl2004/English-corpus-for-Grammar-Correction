@@ -1,0 +1,50 @@
+{
+  "total_entries": 1587,
+  "error_type_counts": {
+    "ART": 158,
+    "PREP": 112,
+    "OTHER": 50,
+    "SPE": 32,
+    "SVA": 24,
+    "TENSE": 14
+  },
+  "top_error_combinations": {
+    "": 1284,
+    "ART": 90,
+    "PREP": 70,
+    "OTHER": 50,
+    "ART + PREP": 23,
+    "SPE": 19,
+    "SVA": 10,
+    "ART + SPE": 8,
+    "TENSE": 7,
+    "ART + TENSE": 6
+  },
+  "dataset_distribution": {
+    "jfleg": 1284,
+    "synthetic": 253,
+    "stackexchange": 50
+  },
+  "length_stats": {
+    "source_words": {
+      "min": 3,
+      "max": 80,
+      "avg": 17.594202898550726
+    },
+    "target_words": {
+      "min": 3,
+      "max": 77,
+      "avg": 17.897290485192187
+    },
+    "source_chars": {
+      "min": 8,
+      "max": 416,
+      "avg": 91.47574039067423
+    },
+    "target_chars": {
+      "min": 9,
+      "max": 413,
+      "avg": 92.40453686200378
+    }
+  }
+}

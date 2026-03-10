@@ -1,0 +1,35 @@
+# English Grammar Correction Corpus - Dependencies
+# Install with: pip install -r requirements.txt
+
+# Core Data Processing
+pandas>=2.0.0
+numpy>=1.24.0
+
+# NLP Libraries
+spacy>=3.5.0
+nltk>=3.8.0
+
+# Web Scraping
+requests>=2.28.0
+beautifulsoup4>=4.12.0
+praw>=7.7.0  # Reddit API
+lxml>=4.9.0
+
+# Data Validation
+jsonschema>=4.17.0
+
+# Progress Bars
+tqdm>=4.65.0
+
+# Text Processing
+regex>=2023.0.0
+language-tool-python>=2.7.0  # Grammar checking
+
+# File Handling
+python-dotenv>=1.0.0
+
+# Wikipedia API
+wikipedia-api>=0.6.0
+
+# News API
+newsapi-python>=0.2.7
