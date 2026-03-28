@@ -1,0 +1,54 @@
+# Virtual Environments
+.env
+.venv
+env/
+venv/
+ENV/
+
+# Python caching & artifacts
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Data directories (Corpus data can get very large, best not to push to GitHub)
+data/raw/
+data/processed/
+data/final/
+
+# If you want to commit the empty data folders to keep structure on GitHub, 
+# uncomment the lines below and add a blank '.gitkeep' file in each empty folder
+# !data/raw/.gitkeep
+# !data/processed/.gitkeep
+# !data/final/.gitkeep
+
+# IDE / Editor folders
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS specific
+.DS_Store
+Thumbs.db
+
+# Jupyter Notebooks
+.ipynb_checkpoints
+
+# Logs
+*.log

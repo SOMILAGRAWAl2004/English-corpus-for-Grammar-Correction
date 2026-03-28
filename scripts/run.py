@@ -48,16 +48,6 @@ def run_synthetic():
     generate_synthetic_corpus(num_pairs=5000, use_wikipedia=True)
 
 
-def run_scraping():
-    """Run web scraping"""
-    print("\n" + "="*70)
-    print("STEP 3: SCRAPING WEB DATA")
-    print("="*70)
-    
-    from scripts.scrape_reddit import main as scrape_main
-    scrape_main()
-
-
 def run_processing():
     """Run data processing"""
     print("\n" + "="*70)
@@ -80,8 +70,6 @@ def run_all():
     # Step 2: Generate synthetic data
     run_synthetic()
     
-    # Step 3: Scrape web data
-    run_scraping()
     
     # Step 4: Process and finalize
     run_processing()
