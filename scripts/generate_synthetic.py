@@ -436,44 +436,46 @@ class SyntheticErrorGenerator:
 
 
 class WikipediaDataSource:
-    """Fetch clean sentences from Wikipedia"""
+    """Fetch clean sentences from Wikipedia via HuggingFace"""
     
     def __init__(self):
-        self.api_url = "https://en.wikipedia.org/api/rest_v1/page/random/summary"
-        self.wiki_api = "https://en.wikipedia.org/w/api.php"
-    
-    def get_random_sentences(self, count: int = 100) -> List[str]:
-        """Get random sentences from Wikipedia articles"""
-        sentences = []
-        
-        print(f"📚 Fetching sentences from Wikipedia...")
-        
-        with tqdm(total=count, desc="Fetching Wikipedia sentences") as pbar:
-            attempts = 0
-            max_attempts = count * 3  # Allow some failures
+        try:
+            from datasets import load_dataset
+            self.load_dataset = load_dataset
+        except ImportError:
+            print("datasets library needed for Wikipedia. Install with: pip install datasets")
+            sys.exit(1)
             
-            while len(sentences) < count and attempts < max_attempts:
-                attempts += 1
-                try:
-                    # Get random article
-                    response = requests.get(self.api_url, timeout=10)
-                    if response.status_code == 200:
-                        data = response.json()
-                        extract = data.get("extract", "")
-                        
-                        # Split into sentences
-                        article_sentences = self._split_sentences(extract)
-                        
+    def get_random_sentences(self, count: int = 100) -> List[str]:
+        sentences = []
+        print(f"📚 Downloading wikitext-103 from HuggingFace (one-time ~180MB)...")
+        
+        try:
+            # Download full dataset — it's only ~180MB and much more reliable than streaming
+            dataset = self.load_dataset("wikitext", "wikitext-103-raw-v1", split="train")
+            
+            print(f"✓ Downloaded {len(dataset)} text blocks. Extracting sentences...")
+            
+            # Shuffle indices so we get variety
+            indices = list(range(len(dataset)))
+            random.shuffle(indices)
+            
+            with tqdm(total=count, desc="Extracting sentences") as pbar:
+                for idx in indices:
+                    if len(sentences) >= count:
+                        break
+                    text = dataset[idx].get("text", "")
+                    if len(text) > 30:
+                        article_sentences = self._split_sentences(text)
                         for sent in article_sentences:
                             if self._is_valid_sentence(sent):
                                 sentences.append(sent)
                                 pbar.update(1)
                                 if len(sentences) >= count:
                                     break
-                
-                except Exception as e:
-                    continue
-        
+        except Exception as e:
+            print(f"Error downloading wikipedia: {e}")
+            
         return sentences[:count]
     
     def _split_sentences(self, text: str) -> List[str]:
@@ -603,19 +605,27 @@ def generate_synthetic_corpus(num_pairs: int = 10000, use_wikipedia: bool = True
     
     if use_wikipedia:
         wiki_source = WikipediaDataSource()
-        wiki_sentences = wiki_source.get_random_sentences(num_pairs // 2)
+        # Wikipedia has millions of sentences — request 2x to account for pattern misses
+        wiki_count = num_pairs * 2
+        wiki_sentences = wiki_source.get_random_sentences(wiki_count)
         all_sentences.extend(wiki_sentences)
         print(f"✓ Collected {len(wiki_sentences)} sentences from Wikipedia")
     
+    # Only use offline sources as small supplements (they only have ~20 samples each)
     news_source = NewsDataSource()
-    news_sentences = news_source.get_sentences(num_pairs // 4)
+    news_sentences = news_source.get_sentences(min(500, num_pairs // 10))
     all_sentences.extend(news_sentences)
     print(f"✓ Collected {len(news_sentences)} sentences from News")
     
     gutenberg_source = GutenbergDataSource()
-    gutenberg_sentences = gutenberg_source.get_sentences(num_pairs // 4)
+    gutenberg_sentences = gutenberg_source.get_sentences(min(500, num_pairs // 10))
     all_sentences.extend(gutenberg_sentences)
     print(f"✓ Collected {len(gutenberg_sentences)} sentences from Gutenberg")
+    
+    # Deduplicate before error injection
+    all_sentences = list(set(all_sentences))
+    random.shuffle(all_sentences)
+    print(f"✓ {len(all_sentences)} unique sentences after deduplication")
     
     # Generate errors
     print(f"\n🔄 Generating synthetic errors...")

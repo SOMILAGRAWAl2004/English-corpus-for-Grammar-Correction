@@ -296,7 +296,8 @@ def main():
     data_files = [
         PROCESSED_DATA_DIR / "jfleg_pairs.jsonl",
         PROCESSED_DATA_DIR / "synthetic_pairs.jsonl",
-        PROCESSED_DATA_DIR / "scraped_pairs.jsonl",
+        PROCESSED_DATA_DIR / "stackexchange_pairs.jsonl",
+        PROCESSED_DATA_DIR / "academic_pairs.jsonl",
     ]
     
     for data_file in data_files:
